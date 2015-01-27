@@ -1,0 +1,9 @@
+[package]
+
+name = "ttt_rust_2"
+version = "0.0.1"
+authors = [ "Dave Torre <dtorre@8thlight.com>" ]
+
+[[bin]]
+
+name = "ttt_rust_2"
