@@ -27,8 +27,9 @@ fn get_board_width(board: &Vec<Token>) -> usize {
 pub fn get_rows(board: Vec<Token>) -> Vec<Vec<Token>> {
     let width = get_board_width(&board);
     let mut rows = vec![];
-    for i in range(0, width) {
-        let row = board[i * 3..i * 3 + width].to_vec();
+    for row_number in range(0, width) {
+        let row_start = row_number * width;
+        let row = board[row_start..(row_start + width)].to_vec();
         rows.push(row);
     }
     rows

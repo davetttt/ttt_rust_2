@@ -9,10 +9,16 @@ fn set_spaces(board: Vec<Token>, spaces: Vec<usize>, token: Token) -> Vec<Token>
     resulting_board
 }
 
-fn generate_test_board() -> Vec<Token> {
+fn generate_test_board_one() -> Vec<Token> {
     let empty_board = generate_empty_board(3);
     let temp_board = set_spaces(empty_board, vec![0, 2, 7], Token::X);
     set_spaces(temp_board, vec![4, 5], Token::O)
+}
+
+fn generate_test_board_two() -> Vec<Token> {
+    let empty_board = generate_empty_board(3);
+    let temp_board = set_spaces(empty_board, vec![1, 4, 6], Token::X);
+    set_spaces(temp_board, vec![0, 8], Token::O)
 }
 
 #[test]
@@ -37,9 +43,9 @@ fn test_set_space() {
 }
 
 #[test]
-fn test_get_rows() {
+fn test_get_rows_one() {
     // with 9 space board, returns vector of 3 vectors, one for each row
-    let board = generate_test_board();
+    let board = generate_test_board_one();
     let expected = vec![vec![Token::X,     Token::Empty, Token::X],
                         vec![Token::Empty, Token::O,     Token::O],
                         vec![Token::Empty, Token::X,     Token::Empty]];
@@ -48,9 +54,20 @@ fn test_get_rows() {
 }
 
 #[test]
+fn test_get_rows_two() {
+    // works with a second 9 space board
+    let board = generate_test_board_two();
+    let expected = vec![vec![Token::O,     Token::X,     Token::Empty],
+                        vec![Token::Empty, Token::X,     Token::Empty],
+                        vec![Token::X,     Token::Empty, Token::O]];
+
+    assert_eq!(get_rows(board), expected);
+}
+
+#[test]
 fn test_get_columns_one() {
     // with 9 space board, returns vector of 3 vectors, one for each column
-    let board = generate_test_board();
+    let board = generate_test_board_one();
     let expected = vec![vec![Token::X,     Token::Empty, Token::Empty],
                         vec![Token::Empty, Token::O,     Token::X],
                         vec![Token::X,     Token::O,     Token::Empty]];
@@ -61,13 +78,11 @@ fn test_get_columns_one() {
 #[test]
 fn test_get_columns_two() {
     // works with a second 9 space board
-    let empty_board = generate_empty_board(3);
-    let temp_board = set_spaces(empty_board, vec![1, 4, 6], Token::X);
-    let board = set_spaces(temp_board, vec![0, 8], Token::O);
-
+    let board = generate_test_board_two();
     let expected = vec![vec![Token::O,     Token::Empty, Token::X],
                         vec![Token::X,     Token::X,     Token::Empty],
                         vec![Token::Empty, Token::Empty, Token::O]];
+
     assert_eq!(get_columns(board), expected);
 }
 
