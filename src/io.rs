@@ -1,3 +1,7 @@
+pub trait Io {
+    fn prompt(&mut self, question: String) -> String;
+}
+
 pub struct TestIo {
     answers: Vec<String>,
     prompt_count: usize,
@@ -10,9 +14,11 @@ impl TestIo {
             prompt_count: 0,
         }
     }
+}
 
-    #[allow(unused_variables)]
-    pub fn prompt(&mut self, question: String) -> String {
+impl Io for TestIo {
+    #[allow(unused_variables)] // TestIo doesn't care about question
+    fn prompt(&mut self, question: String) -> String {
         self.prompt_count += 1;
         self.answers[self.prompt_count - 1].clone()
     }
