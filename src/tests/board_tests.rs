@@ -86,3 +86,22 @@ fn test_get_columns_two() {
     assert_eq!(get_columns(board), expected);
 }
 
+#[test]
+fn test_get_diagonals_one() {
+    // with 9 space board, returns vector of 2 vectors, one for each diagonal
+    let board = generate_test_board_one();
+    let expected = vec![vec![Token::X, Token::O, Token::Empty],
+                        vec![Token::X, Token::O, Token::Empty]];
+
+    assert_eq!(get_diagonals(board), expected);
+}
+
+#[test]
+fn test_get_diagonals_two() {
+    // works with a second 9 space board
+    let board = generate_test_board_two();
+    let expected = vec![vec![Token::O,     Token::X, Token::O],
+                        vec![Token::Empty, Token::X, Token::X]];
+
+    assert_eq!(get_diagonals(board), expected);
+}

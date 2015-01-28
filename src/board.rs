@@ -60,3 +60,26 @@ pub fn get_columns(board: Vec<Token>) -> Vec<Vec<Token>> {
     }
     columns
 }
+
+fn take_nth(board: &Vec<Token>, n: usize, quantity: usize) -> Vec<Token> {
+    let space_numbers = range(0, board.len()).
+                            filter(|&x| x % n == n || x % n == 0).
+                            collect::<Vec<usize>>();
+    let truncated_space_numbers = space_numbers[0..quantity].to_vec();
+    get_spaces(board, truncated_space_numbers)
+}
+
+fn get_downward_diagonal(board: &Vec<Token>) -> Vec<Token> {
+    let width = get_board_width(board);
+    take_nth(board, width + 1, width)
+}
+
+fn get_upward_diagonal(board: &Vec<Token>) -> Vec<Token> {
+    let width = get_board_width(board);
+    let board_subset = board[(width -1)..board.len()].to_vec();
+    take_nth(&board_subset, width - 1, width)
+}
+
+pub fn get_diagonals(board: Vec<Token>) -> Vec<Vec<Token>> {
+    vec![get_downward_diagonal(&board), get_upward_diagonal(&board)]
+}
