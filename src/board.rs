@@ -24,17 +24,6 @@ fn get_board_width(board: &Vec<Token>) -> usize {
     (board.len() as f64).sqrt() as usize
 }
 
-pub fn get_rows(board: Vec<Token>) -> Vec<Vec<Token>> {
-    let width = get_board_width(&board);
-    let mut rows = vec![];
-    for row_number in range(0, width) {
-        let row_start = row_number * width;
-        let row = board[row_start..(row_start + width)].to_vec();
-        rows.push(row);
-    }
-    rows
-}
-
 fn get_spaces(board: &Vec<Token>, space_numbers: Vec<usize>) -> Vec<Token> {
     let mut spaces = vec![];
     for space_number in space_numbers.iter() {
@@ -43,30 +32,32 @@ fn get_spaces(board: &Vec<Token>, space_numbers: Vec<usize>) -> Vec<Token> {
     spaces
 }
 
-fn get_column(board: &Vec<Token>, column_number: usize) -> Vec<Token> {
-    let width = get_board_width(board);
-    let board_subset = board[column_number..board.len()].to_vec();
-    let space_numbers = range(0, board_subset.len()).
-                            filter(|&x| x % width == width || x % width == 0).
+fn take_nth(board: &Vec<Token>, n: usize, quantity: usize) -> Vec<Token> {
+    let space_numbers = range(0, board.len()).
+                            filter(|&x| x % n == n || x % n == 0).
                             collect::<Vec<usize>>();
-    get_spaces(&board_subset, space_numbers)
+    let space_numbers_subset = space_numbers[0..quantity].to_vec();
+    get_spaces(board, space_numbers_subset)
+}
+
+pub fn get_rows(board: Vec<Token>) -> Vec<Vec<Token>> {
+    let width = get_board_width(&board);
+    let mut rows = vec![];
+    for row_number in range(0, width) {
+        let board_subset = board[(row_number * width)..board.len()].to_vec();
+        rows.push(take_nth(&board_subset, 1, width));
+    }
+    rows
 }
 
 pub fn get_columns(board: Vec<Token>) -> Vec<Vec<Token>> {
     let width = get_board_width(&board);
     let mut columns = vec![];
     for column_number in range(0, width) {
-        columns.push(get_column(&board, column_number));
+        let board_subset = board[column_number..board.len()].to_vec();
+        columns.push(take_nth(&board_subset, width, width));
     }
     columns
-}
-
-fn take_nth(board: &Vec<Token>, n: usize, quantity: usize) -> Vec<Token> {
-    let space_numbers = range(0, board.len()).
-                            filter(|&x| x % n == n || x % n == 0).
-                            collect::<Vec<usize>>();
-    let truncated_space_numbers = space_numbers[0..quantity].to_vec();
-    get_spaces(board, truncated_space_numbers)
 }
 
 fn get_downward_diagonal(board: &Vec<Token>) -> Vec<Token> {
