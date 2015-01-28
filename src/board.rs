@@ -1,15 +1,11 @@
 use super::token::Token;
 use std::num::Float;
 
+#[allow(unused_variables)] // i in for loop is never used
 pub fn generate_empty_board(width: usize) -> Vec<Token> {
     let mut board = vec![];
-    let mut count = 0;
-    loop {
-        if count == width * width {
-            break;
-        }
+    for i in range(0, width * width) {
         board.push(Token::Empty);
-        count += 1;
     }
     board
 }
