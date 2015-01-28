@@ -34,7 +34,7 @@ fn get_spaces(board: &Vec<Token>, space_numbers: Vec<usize>) -> Vec<Token> {
 
 fn take_nth(board: &Vec<Token>, n: usize, quantity: usize) -> Vec<Token> {
     let space_numbers = range(0, board.len()).
-                            filter(|&x| x % n == n || x % n == 0).
+                            filter(|&number| number % n == n || number % n == 0).
                             collect::<Vec<usize>>();
     let space_numbers_subset = space_numbers[0..quantity].to_vec();
     get_spaces(board, space_numbers_subset)
