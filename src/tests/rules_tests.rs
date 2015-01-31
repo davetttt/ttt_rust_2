@@ -34,11 +34,7 @@ fn test_get_winner_one() {
     let mut board = board::generate_empty_board(3);
     board = board_tests::set_spaces(board, vec![1, 3, 7], Token::X);
     board = board_tests::set_spaces(board, vec![2, 4, 6], Token::O);
-    let winner = match get_winner(&board) {
-        Some(x) => x,
-        None    => Token::Empty
-    };
-    assert_eq!(winner, Token::O);
+    assert_eq!(get_winner(&board), Token::O);
 }
 
 #[test]
@@ -47,20 +43,12 @@ fn test_get_winner_two() {
     let mut board = board::generate_empty_board(3);
     board = board_tests::set_spaces(board, vec![1, 7], Token::X);
     board = board_tests::set_spaces(board, vec![2, 4], Token::O);
-    let winner = match get_winner(&board) {
-        Some(x) => x,
-        None    => Token::Empty
-    };
-    assert_eq!(winner, Token::Empty);
+    assert_eq!(get_winner(&board), Token::Empty);
 }
 
 #[test]
 fn test_get_winner_three() {
     // with full non-won board, returns option None
     let board = board_tests::generate_cat_board();
-    let winner = match get_winner(&board) {
-        Some(x) => x,
-        None    => Token::Empty
-    };
-    assert_eq!(winner, Token::Empty);
+    assert_eq!(get_winner(&board), Token::Empty);
 }

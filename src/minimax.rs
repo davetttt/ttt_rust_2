@@ -2,12 +2,8 @@ use super::token::Token;
 use super::rules;
 
 fn get_score(board: &Vec<Token>) -> isize {
-    let winner = match rules::get_winner(board) {
-        Some(x) => x,
-        None    => Token::Empty,
-    };
     let absolute_value_score = board.len() as isize + 1;
-    match winner {
+    match rules::get_winner(board) {
         Token::X => absolute_value_score,
         Token::O => -absolute_value_score,
         _        => 0,
