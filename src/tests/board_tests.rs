@@ -1,7 +1,7 @@
 use ::board::*;
 use ::token::Token;
- 
-fn set_spaces(board: Vec<Token>, spaces: Vec<usize>, token: Token) -> Vec<Token> {
+
+pub fn set_spaces(board: Vec<Token>, spaces: Vec<usize>, token: Token) -> Vec<Token> {
     let mut resulting_board = board;
     for space in spaces.iter() {
         resulting_board[*space] = token;
@@ -50,7 +50,7 @@ fn test_get_rows_one() {
                         vec![Token::Empty, Token::O,     Token::O],
                         vec![Token::Empty, Token::X,     Token::Empty]];
 
-    assert_eq!(get_rows(board), expected);
+    assert_eq!(get_rows(&board), expected);
 }
 
 #[test]
@@ -61,7 +61,7 @@ fn test_get_rows_two() {
                         vec![Token::Empty, Token::X,     Token::Empty],
                         vec![Token::X,     Token::Empty, Token::O]];
 
-    assert_eq!(get_rows(board), expected);
+    assert_eq!(get_rows(&board), expected);
 }
 
 #[test]
@@ -72,7 +72,7 @@ fn test_get_columns_one() {
                         vec![Token::Empty, Token::O,     Token::X],
                         vec![Token::X,     Token::O,     Token::Empty]];
 
-    assert_eq!(get_columns(board), expected);
+    assert_eq!(get_columns(&board), expected);
 }
 
 #[test]
@@ -83,7 +83,7 @@ fn test_get_columns_two() {
                         vec![Token::X,     Token::X,     Token::Empty],
                         vec![Token::Empty, Token::Empty, Token::O]];
 
-    assert_eq!(get_columns(board), expected);
+    assert_eq!(get_columns(&board), expected);
 }
 
 #[test]
@@ -93,7 +93,7 @@ fn test_get_diagonals_one() {
     let expected = vec![vec![Token::X, Token::O, Token::Empty],
                         vec![Token::X, Token::O, Token::Empty]];
 
-    assert_eq!(get_diagonals(board), expected);
+    assert_eq!(get_diagonals(&board), expected);
 }
 
 #[test]
@@ -103,5 +103,23 @@ fn test_get_diagonals_two() {
     let expected = vec![vec![Token::O,     Token::X, Token::O],
                         vec![Token::Empty, Token::X, Token::X]];
 
-    assert_eq!(get_diagonals(board), expected);
+    assert_eq!(get_diagonals(&board), expected);
+}
+
+#[test]
+fn test_board_is_full_one() {
+    // returns true if full
+    let mut board = generate_empty_board(3);
+    board = set_spaces(board, vec![0, 1, 5, 6, 8], Token::X);
+    board = set_spaces(board, vec![2, 3, 4, 7], Token::O);
+    assert!(board_is_full(&board));
+}
+
+#[test]
+fn test_board_is_full_two() {
+    // returns false if not full
+    let mut board = generate_empty_board(3);
+    board = set_spaces(board, vec![0, 5, 6], Token::X);
+    board = set_spaces(board, vec![3, 7], Token::O);
+    assert!(!board_is_full(&board));
 }

@@ -36,8 +36,8 @@ fn take_nth(board: &Vec<Token>, n: usize, quantity: usize) -> Vec<Token> {
     get_spaces(board, space_numbers_subset)
 }
 
-pub fn get_rows(board: Vec<Token>) -> Vec<Vec<Token>> {
-    let width = get_board_width(&board);
+pub fn get_rows(board: &Vec<Token>) -> Vec<Vec<Token>> {
+    let width = get_board_width(board);
     let mut rows = vec![];
     for row_number in range(0, width) {
         let board_subset = board[(row_number * width)..board.len()].to_vec();
@@ -46,8 +46,8 @@ pub fn get_rows(board: Vec<Token>) -> Vec<Vec<Token>> {
     rows
 }
 
-pub fn get_columns(board: Vec<Token>) -> Vec<Vec<Token>> {
-    let width = get_board_width(&board);
+pub fn get_columns(board: &Vec<Token>) -> Vec<Vec<Token>> {
+    let width = get_board_width(board);
     let mut columns = vec![];
     for column_number in range(0, width) {
         let board_subset = board[column_number..board.len()].to_vec();
@@ -67,6 +67,10 @@ fn get_upward_diagonal(board: &Vec<Token>) -> Vec<Token> {
     take_nth(&board_subset, width - 1, width)
 }
 
-pub fn get_diagonals(board: Vec<Token>) -> Vec<Vec<Token>> {
-    vec![get_downward_diagonal(&board), get_upward_diagonal(&board)]
+pub fn get_diagonals(board: &Vec<Token>) -> Vec<Vec<Token>> {
+    vec![get_downward_diagonal(board), get_upward_diagonal(board)]
+}
+
+pub fn board_is_full(board: &Vec<Token>) -> bool {
+    !board.iter().any(|token| *token == Token::Empty)
 }
