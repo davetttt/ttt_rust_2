@@ -9,7 +9,7 @@ fn winner_for_line(line: &Vec<Token>) -> Option<Token> {
     }
 }
 
-fn get_winner(board: &Vec<Token>) -> Option<Token> {
+pub fn get_winner(board: &Vec<Token>) -> Option<Token> {
     let mut lines = board::get_rows(board);
     lines.push_all(board::get_columns(board).as_slice());
     lines.push_all(board::get_diagonals(board).as_slice());
