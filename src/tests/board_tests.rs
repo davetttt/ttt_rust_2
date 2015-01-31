@@ -9,6 +9,12 @@ pub fn set_spaces(board: Vec<Token>, spaces: Vec<usize>, token: Token) -> Vec<To
     resulting_board
 }
 
+pub fn generate_cat_board() -> Vec<Token> {
+    let mut board = generate_empty_board(3);
+    board = set_spaces(board, vec![0, 1, 5, 6, 8], Token::X);
+    set_spaces(board, vec![2, 3, 4, 7], Token::O)
+}
+
 fn generate_test_board_one() -> Vec<Token> {
     let empty_board = generate_empty_board(3);
     let temp_board = set_spaces(empty_board, vec![0, 2, 7], Token::X);
@@ -109,9 +115,7 @@ fn test_get_diagonals_two() {
 #[test]
 fn test_board_is_full_one() {
     // returns true if full
-    let mut board = generate_empty_board(3);
-    board = set_spaces(board, vec![0, 1, 5, 6, 8], Token::X);
-    board = set_spaces(board, vec![2, 3, 4, 7], Token::O);
+    let board = generate_cat_board();
     assert!(board_is_full(&board));
 }
 
