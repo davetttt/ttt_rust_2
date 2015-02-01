@@ -140,3 +140,10 @@ fn test_empty_spaces() {
     let board = generate_test_board_two();
     assert_eq!(empty_spaces(&board), vec![2, 3, 5, 7]);
 }
+
+#[test]
+fn test_is_empty() {
+    // returns true if board contains only Token::Emptys, false otherwise
+    assert!(is_empty(&generate_empty_board(3)));
+    assert!(!is_empty(&generate_test_board_one()));
+}

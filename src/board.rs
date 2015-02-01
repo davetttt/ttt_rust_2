@@ -84,3 +84,7 @@ pub fn empty_spaces(board: &Vec<Token>) -> Vec<usize> {
         filter(|space_number| board[*space_number] == Token::Empty).
         collect()
 }
+
+pub fn is_empty(board: &Vec<Token>) -> bool {
+    board.iter().all(|token| *token == Token::Empty)
+}
