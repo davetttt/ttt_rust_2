@@ -32,3 +32,11 @@ fn has_winner(board: &Vec<Token>) -> bool {
 pub fn game_is_over(board: &Vec<Token>) -> bool {
     board::board_is_full(board) || has_winner(board)
 }
+
+pub fn turn(board: &Vec<Token>) -> Token {
+    if board::count_tokens(board, Token::X) > board::count_tokens(board, Token::O) {
+        Token::O
+    } else {
+        Token::X
+    }
+}

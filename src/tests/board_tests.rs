@@ -122,8 +122,21 @@ fn test_board_is_full_one() {
 #[test]
 fn test_board_is_full_two() {
     // returns false if not full
-    let mut board = generate_empty_board(3);
-    board = set_spaces(board, vec![0, 5, 6], Token::X);
-    board = set_spaces(board, vec![3, 7], Token::O);
+    let board = generate_test_board_one();
     assert!(!board_is_full(&board));
+}
+
+#[test]
+fn test_count_tokens() {
+    // returns the count of a specified token in board
+    let board = generate_cat_board();
+    assert_eq!(count_tokens(&board, Token::X), 5);
+    assert_eq!(count_tokens(&board, Token::O), 4);
+}
+
+#[test]
+fn test_empty_spaces() {
+    // returns the space numers of the empty spaces in board
+    let board = generate_test_board_two();
+    assert_eq!(empty_spaces(&board), vec![2, 3, 5, 7]);
 }

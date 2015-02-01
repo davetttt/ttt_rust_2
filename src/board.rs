@@ -74,3 +74,13 @@ pub fn get_diagonals(board: &Vec<Token>) -> Vec<Vec<Token>> {
 pub fn board_is_full(board: &Vec<Token>) -> bool {
     !board.iter().any(|token| *token == Token::Empty)
 }
+
+pub fn count_tokens(board: &Vec<Token>, token: Token) -> usize {
+    board.iter().filter(|&t| *t == token).count()
+}
+
+pub fn empty_spaces(board: &Vec<Token>) -> Vec<usize> {
+    range(0, board.len()).
+        filter(|space_number| board[*space_number] == Token::Empty).
+        collect()
+}
