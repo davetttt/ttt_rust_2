@@ -63,7 +63,7 @@ fn test_turn_one() {
 #[test]
 fn test_turn_two() {
     // with more X's than O's, returns Token::O
-    let board = board::set_space(board::generate_empty_board(3),
+    let board = board::set_space(&board::generate_empty_board(3),
                                  3,
                                  Token::X);
     assert_eq!(turn(&board), Token::O);

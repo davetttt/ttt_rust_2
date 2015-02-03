@@ -10,8 +10,8 @@ pub fn generate_empty_board(width: usize) -> Vec<Token> {
     board
 }
 
-pub fn set_space(board: Vec<Token>, space: usize, token: Token) -> Vec<Token> {
-    let mut resulting_board = board;
+pub fn set_space(board: &Vec<Token>, space: usize, token: Token) -> Vec<Token> {
+    let mut resulting_board = board.clone();
     resulting_board[space] = token;
     resulting_board
 }

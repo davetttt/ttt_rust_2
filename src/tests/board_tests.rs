@@ -41,7 +41,7 @@ fn test_generate_empty_board() {
 #[test]
 fn test_set_space() {
     // returns copy of the board with space set with token
-    let board = set_space(generate_empty_board(3), 4, Token::X);
+    let board = set_space(&generate_empty_board(3), 4, Token::X);
     let expected = vec![Token::Empty, Token::Empty, Token::Empty,
                         Token::Empty, Token::X, Token::Empty,
                         Token::Empty, Token::Empty, Token::Empty];

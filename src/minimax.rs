@@ -21,15 +21,15 @@ fn do_weighting(score: isize) -> isize {
     }
 }
 
-pub fn minimax(board: Vec<Token>) -> (Option<usize>, isize) {
-    if rules::game_is_over(&board) {
-        (None, get_score(&board))
+pub fn minimax(board: &Vec<Token>) -> (Option<usize>, isize) {
+    if rules::game_is_over(board) {
+        (None, get_score(board))
     } else {
-        let token = rules::turn(&board);
+        let token = rules::turn(board);
         let mut space_score_tuples = vec![];
-        for space in board::empty_spaces(&board).iter() {
-            let possible_board = board::set_space(board.clone(), *space, token);
-            let score = do_weighting(minimax(possible_board).1);
+        for space in board::empty_spaces(board).iter() {
+            let possible_board = board::set_space(board, *space, token);
+            let score = do_weighting(minimax(&possible_board).1);
             space_score_tuples.push((Some(*space), score));
         }
         let best_tuple = match token {
