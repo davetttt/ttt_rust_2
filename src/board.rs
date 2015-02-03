@@ -71,7 +71,7 @@ pub fn get_diagonals(board: &Vec<Token>) -> Vec<Vec<Token>> {
     vec![get_downward_diagonal(board), get_upward_diagonal(board)]
 }
 
-pub fn board_is_full(board: &Vec<Token>) -> bool {
+pub fn is_full(board: &Vec<Token>) -> bool {
     !board.iter().any(|token| *token == Token::Empty)
 }
 

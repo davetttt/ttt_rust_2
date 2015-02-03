@@ -5,9 +5,9 @@ use super::board;
 fn get_score(board: &Vec<Token>) -> isize {
     let absolute_value_score = board.len() as isize + 1;
     match rules::get_winner(board) {
-        Token::X => absolute_value_score,
-        Token::O => -absolute_value_score,
-        _        => 0,
+        Some(Token::X) => absolute_value_score,
+        Some(Token::O) => -absolute_value_score,
+        _              => 0,
     }
 }
 

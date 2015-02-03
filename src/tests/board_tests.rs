@@ -113,17 +113,17 @@ fn test_get_diagonals_two() {
 }
 
 #[test]
-fn test_board_is_full_one() {
+fn test_is_full_one() {
     // returns true if full
     let board = generate_cat_board();
-    assert!(board_is_full(&board));
+    assert!(is_full(&board));
 }
 
 #[test]
-fn test_board_is_full_two() {
+fn test_is_full_two() {
     // returns false if not full
     let board = generate_test_board_one();
-    assert!(!board_is_full(&board));
+    assert!(!is_full(&board));
 }
 
 #[test]
