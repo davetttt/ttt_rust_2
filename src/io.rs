@@ -1,25 +1,22 @@
 pub trait Io {
-    fn prompt(&mut self, question: String) -> String;
+    fn prompt_with_options(&self, question: &str, options: Vec<&str>) -> usize;
 }
 
 pub struct TestIo {
-    answers: Vec<String>,
-    prompt_count: usize,
+    answer: String,
 }
 
 impl TestIo {
-    pub fn new(injected_answers: Vec<String>) -> TestIo {
-        TestIo {
-            answers: injected_answers,
-            prompt_count: 0,
-        }
+    pub fn new(answer: String) -> TestIo {
+        TestIo { answer: answer }
     }
 }
 
 impl Io for TestIo {
-    #[allow(unused_variables)] // TestIo doesn't care about question
-    fn prompt(&mut self, question: String) -> String {
-        self.prompt_count += 1;
-        self.answers[self.prompt_count - 1].clone()
+    fn prompt_with_options(&self, question: &str, options: Vec<&str>) -> usize {
+        match options.iter().position(|&option| option == self.answer) {
+            Some(chosen_option_index) => chosen_option_index,
+            None => panic!("TestIo chose an invalid option"),
+        }
     }
 }
