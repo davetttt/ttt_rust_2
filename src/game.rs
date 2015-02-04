@@ -7,8 +7,8 @@ pub fn game_loop(players: &Vec<Box<player::Player>>,
     if rules::game_is_over(board) {
         rules::get_winner(board)
     } else {
-        let turn = rules::turn(board);
-        let player = match players.iter().find(|p| p.get_token() == turn) {
+        let token = rules::get_turn_token(board);
+        let player = match players.iter().find(|p| p.get_token() == token) {
             Some(x) => x,
             None    => panic!("Problem determining turn"),
         };

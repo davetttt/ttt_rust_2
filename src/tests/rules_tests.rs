@@ -54,17 +54,17 @@ fn test_get_winner_three() {
 }
 
 #[test]
-fn test_turn_one() {
+fn test_get_turn_token_one() {
     // with same number of X's and O's, returns Token::X
     let board = board::generate_empty_board(3);
-    assert_eq!(turn(&board), Token::X);
+    assert_eq!(get_turn_token(&board), Token::X);
 }
 
 #[test]
-fn test_turn_two() {
+fn test_get_turn_token_two() {
     // with more X's than O's, returns Token::O
     let board = board::set_space(&board::generate_empty_board(3),
                                  3,
                                  Token::X);
-    assert_eq!(turn(&board), Token::O);
+    assert_eq!(get_turn_token(&board), Token::O);
 }
