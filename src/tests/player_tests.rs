@@ -2,6 +2,8 @@ use ::player::*;
 use ::board;
 use ::token::Token;
 use ::tests::board_tests;
+use ::io::TestIo;
+use ::io::Io;
 
 #[test]
 fn test_cpu_player_make_move_one() {
@@ -37,3 +39,15 @@ fn test_cpu_player_make_move_three() {
                board::set_space(&board, 5, Token::O));
 }
 
+#[test]
+fn test_human_player_make_move_one() {
+    // after receiving valid move from Io, returns a board with that move made
+    let io = TestIo::new("4".to_string());
+    let human_player = HumanPlayer::new(io, Token::O);
+    let mut board = board::generate_empty_board(3);
+    board = board_tests::set_spaces(board, vec![0, 7], Token::X);
+    board = board_tests::set_spaces(board, vec![1], Token::O);
+    let expected_result = board::set_space(&board, 4, Token::O);
+
+    assert_eq!(human_player.make_move(&board), expected_result);
+}
