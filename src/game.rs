@@ -18,6 +18,9 @@ pub fn game_loop(players: &Vec<Box<player::Player>>,
     }
 }
 
+// this method is not tested, so it generates a warning
+// whenever the tests are run
+#[allow(dead_code)]
 pub fn play_game<I: Io>(players: &Vec<Box<player::Player>>,
                         board: &Vec<Token>,
                         io: &I) {

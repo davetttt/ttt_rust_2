@@ -9,11 +9,15 @@ pub trait Io {
     fn print(&self, text: &str);
 }
 
+// TestIo is only used when testing
+// but I had trouble defining it outside of the io module
+#[allow(dead_code)]
 pub struct TestIo {
     answer: String,
 }
 
 impl TestIo {
+    #[allow(dead_code)] // only used when testing, see above
     pub fn new(answer: String) -> TestIo {
         TestIo { answer: answer }
     }
@@ -27,7 +31,11 @@ impl Io for TestIo {
             None => panic!("TestIo chose an invalid option"),
         }
     }
+
+    #[allow(unused_variables)] // TestIo doesn't use board
     fn display_board(&self, board: &Vec<Token>) {}
+
+    #[allow(unused_variables)] // TestIo doesn't use text
     fn print(&self, text: &str) {}
 }
 
