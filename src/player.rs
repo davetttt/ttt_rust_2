@@ -29,6 +29,8 @@ impl<I: Io> Player for HumanPlayer<I> {
         let empty_space_strings: Vec<String> = empty_spaces.iter().
                 map(|num| num.to_string()).collect();
         let options = empty_space_strings.iter().map(|s| s.as_slice()).collect();
+
+        self.io.display_board(board);
         let chosen_option = self.io.prompt_with_options("Enter move: ", options);
 
         board::set_space(board, empty_spaces[chosen_option], self.token)
