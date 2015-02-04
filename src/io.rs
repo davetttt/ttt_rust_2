@@ -20,3 +20,17 @@ impl Io for TestIo {
         }
     }
 }
+
+pub struct ConsoleIo;
+
+impl ConsoleIo {
+    pub fn new() -> ConsoleIo {
+        ConsoleIo
+    }
+}
+
+impl Io for ConsoleIo {
+    fn prompt_with_options(&self, question: &str, options: Vec<&str>) -> usize {
+        0
+    }
+}

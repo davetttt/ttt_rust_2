@@ -10,6 +10,7 @@ mod player;
 mod rules;
 mod minimax;
 mod game;
+mod config;
 
 fn main() {
     println!("Tic tac toe");
