@@ -13,6 +13,7 @@ impl TestIo {
 }
 
 impl Io for TestIo {
+    #[allow(unused_variables)] // TestIo doesn't use questions that are passed in
     fn prompt_with_options(&self, question: &str, options: Vec<&str>) -> usize {
         match options.iter().position(|&option| option == self.answer) {
             Some(chosen_option_index) => chosen_option_index,

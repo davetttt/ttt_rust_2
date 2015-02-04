@@ -3,7 +3,6 @@ use ::board;
 use ::token::Token;
 use ::tests::board_tests;
 use ::io::TestIo;
-use ::io::Io;
 
 #[test]
 fn test_cpu_player_make_move_one() {
