@@ -1,6 +1,7 @@
 use super::token::Token;
 use super::player;
 use super::rules;
+use super::io::Io;
 
 pub fn game_loop(players: &Vec<Box<player::Player>>,
                  board: &Vec<Token>) -> Option<Token> {
@@ -17,3 +18,14 @@ pub fn game_loop(players: &Vec<Box<player::Player>>,
     }
 }
 
+pub fn play_game<I: Io>(players: &Vec<Box<player::Player>>,
+                        board: &Vec<Token>,
+                        io: &I) {
+    let winning_token = game_loop(players, board);
+    let message = match winning_token {
+        Some(Token::X) => "X wins!\n",
+        Some(Token::O) => "O wins!\n",
+        _              => "Draw.\n",
+    };
+    io.print(message);
+}

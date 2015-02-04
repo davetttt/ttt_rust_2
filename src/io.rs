@@ -6,6 +6,7 @@ use super::board;
 pub trait Io {
     fn prompt_with_options(&self, question: &str, options: Vec<&str>) -> usize;
     fn display_board(&self, board: &Vec<Token>);
+    fn print(&self, text: &str);
 }
 
 pub struct TestIo {
@@ -26,8 +27,8 @@ impl Io for TestIo {
             None => panic!("TestIo chose an invalid option"),
         }
     }
-
     fn display_board(&self, board: &Vec<Token>) {}
+    fn print(&self, text: &str) {}
 }
 
 pub struct ConsoleIo;
@@ -76,5 +77,9 @@ impl Io for ConsoleIo {
             result.push_str(self.format_row(row).as_slice());
         }
         print!("{}", result.as_slice())
+    }
+
+    fn print(&self, text: &str) {
+        print!("{}", text)
     }
 }
