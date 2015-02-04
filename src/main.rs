@@ -1,6 +1,6 @@
 #![allow(unstable)]
 
-use io::Io;
+use io::Io; // so that we can call 'print' on our ConsoleIo
 
 #[cfg(test)]
 mod tests;

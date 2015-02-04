@@ -38,18 +38,20 @@ impl ConsoleIo {
         ConsoleIo
     }
 
-    fn format_space(&self, space: Token) -> String {
-        match space {
+    fn format_space(&self, token: Token, space_number: usize) -> String {
+        let space_number_string = space_number.to_string();
+        match token {
             Token::X => "X ".to_string(),
             Token::O => "O ".to_string(),
-            _        => "- ".to_string(),
+            _        => format!("{} ", space_number_string),
         }
     }
 
-    fn format_row(&self, row: &Vec<Token>) -> String {
+    fn format_row(&self, row: &Vec<Token>, row_number: usize) -> String {
         let mut result: String = "".to_string();
-        for space in row.iter() {
-            result.push_str(self.format_space(*space).as_slice());
+        for i in range(0, row.len()) {
+            let space_number = row_number + i;
+            result.push_str(self.format_space(row[i], space_number).as_slice());
         }
         result.push_str("\n");
         result
@@ -73,8 +75,9 @@ impl Io for ConsoleIo {
     fn display_board(&self, board: &Vec<Token>) {
         let rows = board::get_rows(board);
         let mut result: String = "".to_string();
-        for row in rows.iter() {
-            result.push_str(self.format_row(row).as_slice());
+        for row_number in range(0, rows.len()) {
+            result.push_str(
+                self.format_row(&rows[row_number], row_number).as_slice());
         }
         print!("{}", result.as_slice())
     }
