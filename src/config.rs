@@ -23,7 +23,7 @@ fn human_human<'a>() -> Vec<Box<Player + 'a>> {
     players
 }
 
-pub fn configure_players<'a, I: Io>(io: I) -> Vec<Box<Player + 'a>> {
+pub fn configure_players<'a, I: Io>(io: &I) -> Vec<Box<Player + 'a>> {
     let config = io.prompt_with_options(concat!(
                 "Chooose one of the following options:\n",
                 "1) You vs. the game (you go first)\n",
@@ -37,3 +37,8 @@ pub fn configure_players<'a, I: Io>(io: I) -> Vec<Box<Player + 'a>> {
         _ => human_human(),
     }
 }
+
+pub fn play_again<I: Io>(io: &I) -> bool {
+    io.prompt_with_options("Play again? (y/n)\n", vec!["y", "n"]) == 0
+}
+

@@ -15,8 +15,8 @@ fn test_configure_players_one() {
     expected.push(Box::new(HumanPlayer::new(ConsoleIo::new(), Token::X)));
     expected.push(Box::new(CpuPlayer::new(Token::O)));
 
-    assert_eq!(configure_players(io).len(), 2);
-//    assert_eq!(configure_players(io), expected);
+    assert_eq!(configure_players(&io).len(), 2);
+//    assert_eq!(configure_players(&io), expected);
 }
 
 #[test]
@@ -29,8 +29,8 @@ fn test_configure_players_two() {
     expected.push(Box::new(CpuPlayer::new(Token::X)));
     expected.push(Box::new(HumanPlayer::new(ConsoleIo::new(), Token::O)));
 
-    assert_eq!(configure_players(io).len(), 2);
-//    assert_eq!(configure_players(io), expected);
+    assert_eq!(configure_players(&io).len(), 2);
+//    assert_eq!(configure_players(&io), expected);
 }
 
 #[test]
@@ -43,6 +43,21 @@ fn test_configure_players_three() {
     expected.push(Box::new(HumanPlayer::new(ConsoleIo::new(), Token::X)));
     expected.push(Box::new(HumanPlayer::new(ConsoleIo::new(), Token::O)));
 
-    assert_eq!(configure_players(io).len(), 2);
-//    assert_eq!(configure_players(io), expected);
+    assert_eq!(configure_players(&io).len(), 2);
+//    assert_eq!(configure_players(&io), expected);
 }
+
+#[test]
+fn test_play_again_one() {
+    // with answer = "y", returns true
+    let io = TestIo::new("y".to_string());
+    assert!(play_again(&io));
+}
+
+#[test]
+fn test_play_again_two() {
+    // with answer = "n", returns false
+    let io = TestIo::new("n".to_string());
+    assert!(!play_again(&io));
+}
+
