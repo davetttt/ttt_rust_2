@@ -13,6 +13,15 @@ mod game;
 mod config;
 
 fn main() {
-    println!("Tic tac toe");
+    loop {
+        let io = io::ConsoleIo::new();
+        let players = config::configure_players(&io);
+        let board = board::generate_empty_board(3);
+        game::game_loop(&players, &board);
+
+        if !config::play_again(&io) {
+            break;
+        }
+    }
 }
 
