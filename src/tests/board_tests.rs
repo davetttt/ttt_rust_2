@@ -49,6 +49,13 @@ fn test_set_space() {
 }
 
 #[test]
+fn test_get_board_width() {
+    // returns the width of the board
+    assert_eq!(get_board_width(&generate_empty_board(3)), 3);
+    assert_eq!(get_board_width(&generate_empty_board(4)), 4);
+}
+
+#[test]
 fn test_get_rows_one() {
     // with 9 space board, returns vector of 3 vectors, one for each row
     let board = generate_test_board_one();

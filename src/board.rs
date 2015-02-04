@@ -16,7 +16,7 @@ pub fn set_space(board: &Vec<Token>, space: usize, token: Token) -> Vec<Token> {
     resulting_board
 }
 
-fn get_board_width(board: &Vec<Token>) -> usize {
+pub fn get_board_width(board: &Vec<Token>) -> usize {
     (board.len() as f64).sqrt() as usize
 }
 

@@ -82,10 +82,12 @@ impl Io for ConsoleIo {
 
     fn display_board(&self, board: &Vec<Token>) {
         let rows = board::get_rows(board);
+        let board_width = board::get_board_width(board);
         let mut result: String = "".to_string();
         for row_number in range(0, rows.len()) {
             result.push_str(
-                self.format_row(&rows[row_number], row_number).as_slice());
+                self.format_row(&rows[row_number],
+                                row_number * board_width).as_slice());
         }
         print!("{}", result.as_slice())
     }
