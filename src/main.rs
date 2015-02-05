@@ -16,7 +16,7 @@ mod config;
 
 fn main() {
     let io = io::ConsoleIo::new();
-    io.print("Welcome to Tic Tac Toe.");
+    io.print("Welcome to Tic Tac Toe.\n");
 
     loop {
         let players = config::configure_players(&io);
