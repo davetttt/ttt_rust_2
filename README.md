@@ -3,7 +3,7 @@
 ## Install Rust
 I used the 1.0.0-alpha version. Here's how I did it:
   1. Download the 1.0.0-alpha binaries [here][rust] (not the nightly build!)
-  2. Extract the .tar
+  2. Extract the .tar (just double-click on the file)
   3. `cd` into the new directory and run `sh install.sh`
 
 By installing this way, you also get Cargo, the Rust build tool.
