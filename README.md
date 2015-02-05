@@ -9,8 +9,8 @@ I used the 1.0.0-alpha version. Here's how I did it:
 By installing this way, you also get Cargo, the Rust build tool.
 
 ## Get the project
-	git clone https://github.com/davetttt/ttt_rust.git
-	cd ttt_rust
+	git clone https://github.com/davetttt/ttt_rust_2.git
+	cd ttt_rust_2
 
 ## Run the tests
 	cargo test
